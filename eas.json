@@ -1,0 +1,32 @@
+{
+  "cli": {
+    "version": ">= 0.34.1"
+  },
+  "build": {
+    "development": {
+      "developmentClient": true,
+      "distribution": "internal"
+    },
+    "preview": {
+      "distribution": "internal"
+    },
+    "production": {},
+    "apkBuild": {
+      "android": {
+        "buildType": "apk"
+      }
+    }
+  },
+  "submit": {
+    "production": {
+      "ios": {
+        "appleId": "bastien.guyonnet@tutanota.com",
+        "language": "fr-FR",
+        "appName": "pic'n'share"
+      },
+      "android": {
+        "changesNotSentForReview": true
+      }
+    }
+  }
+}
