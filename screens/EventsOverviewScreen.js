@@ -5,7 +5,8 @@ import {
   StyleSheet,
   Text,
   View,
-  Pressable
+  Pressable,
+  Button
 } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import { useDispatch, useSelector } from 'react-redux';
@@ -15,6 +16,7 @@ import CodeInput from '../components/CodeInput';
 import Colors from '../constants/Colors';
 import IconComponent from '../components/IconComponent';
 import * as eventsActions from '../store/actions/events';
+import logout from '../store/actions/auth.js'
 
 const EventsOverviewScreen = props => {
   const [isLoading, setIsLoading] = useState(false);
@@ -61,6 +63,10 @@ const EventsOverviewScreen = props => {
         >
           <Text>Try again</Text>
         </Pressable>
+        <Button
+        title="se deconnecter"
+        onPress={()=>{console.log("bouton cliqué"), logout()}}
+        />
       </View>
     );
   }
