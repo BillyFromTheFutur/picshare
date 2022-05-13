@@ -2,8 +2,9 @@
   "expo": {
     "name": "picshare",
     "slug": "picshare",
-    "version": "0.1.0",
+    "version": "0.2.0",
     "orientation": "portrait",
+    "jsEngine":"hermes",
     "icon": "./assets/icon.png",
     "splash": {
       "image": "./assets/splash.png",
@@ -16,7 +17,7 @@
     "assetBundlePatterns": ["**/*"],
     "ios": {
       "bundleIdentifier": "fr.picnshare.app",
-      "buildNumber": "0.1.0",
+      "buildNumber": "0.2.0",
       "supportsTablet": true,
       "infoPlist": {
         "NSCameraUsageDescription": "This app uses the camera to take pictures that will be shared and displayed to other users of the app",

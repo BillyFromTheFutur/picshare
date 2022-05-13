@@ -110,10 +110,37 @@ export const signup = (
   };
 };
 
+
 export const logout = () => {
   clearLogoutTimer();
-  AsyncStorage.removeItem('userData');
-  return { type: LOGOUT };
+  return async dispatch => {
+    await AsyncStorage.removeItem('userData');
+    console.log(AsyncStorage.item)
+    dispatch({
+      type: 'LOGOUT',
+    })
+  }
+  
+   /* return async dispatch => {
+    await AsyncStorage.clear();
+    dispatch({
+      type: 'LOGOUT',
+    })
+  }*/
+};
+
+export const mysignup = () => {
+  return async dispatch => {
+    console.log('-----    INSCRIPTION    -----');
+
+    if (resData.status === 'SUCCESS') {
+      console.log(resData.User);
+      const expirationDate = new Date(new Date().getTime() + dayinms);
+      console.log(expirationDate);
+      saveDataToStorage(resData.User.Token, resData.User.Email, expirationDate);
+      dispatch(authenticate(resData.User.Token, resData.User.Email, dayinms));
+    }
+  };
 };
 
 const clearLogoutTimer = () => {

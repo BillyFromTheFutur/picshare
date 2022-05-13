@@ -16,8 +16,7 @@ import CodeInput from '../components/CodeInput';
 import Colors from '../constants/Colors';
 import IconComponent from '../components/IconComponent';
 import * as eventsActions from '../store/actions/events';
-import logout from '../store/actions/auth.js'
-
+import * as authActions from '../store/actions/auth';
 const EventsOverviewScreen = props => {
   const [isLoading, setIsLoading] = useState(false);
   const [isRefreshing, setIsRefreshing] = useState(false);
@@ -37,6 +36,7 @@ const EventsOverviewScreen = props => {
     setIsRefreshing(false);
   }, [dispatch, setError, setIsRefreshing]);
 
+  
   useEffect(() => {
     const unsubscribe = props.navigation.addListener('focus', loadEvents);
 
@@ -64,13 +64,13 @@ const EventsOverviewScreen = props => {
           <Text>Try again</Text>
         </Pressable>
         <Button
-        title="se deconnecter"
-        onPress={()=>{console.log("bouton cliqué"), logout()}}
-        />
+          title=" logout"
+          onPress={disconnect}
+        /> 
       </View>
     );
   }
-
+  
   if (isLoading) {
     return (
       <View style={styles.screen}>
@@ -78,11 +78,31 @@ const EventsOverviewScreen = props => {
       </View>
     );
   }
+  events.length=0
 
+  const disconnect = async  () =>{
+    console.log("action")
+    let action;
+    let test = "salut a toi"
+    action = authActions.logout()
+    setError(null)
+    setIsLoading(true);
+    try {
+      await(dispatch(action))
+    }catch(error){
+      setError(error.message)
+    }
+  //    console.log("Encore Salut")
+    
+  }
   if (!isLoading && events.length === 0) {
     return (
       <View style={styles.screen}>
         <Text> Aucun évènement trouvé.</Text>
+        <Button 
+        onPress={disconnect}
+        title="Se deco"
+          />
       </View>
     );
   }
@@ -157,7 +177,7 @@ export const screenOptions = navData => {
   const token = useSelector(state => state.auth.token);
   console.log('PRIVATE EVENTS : ', privateEvents);
   return {
-    title: 'Événements publics :)',
+    title: 'Événements publics',
     headerRight: () => (
       <IconComponent
         iconName='arrow-forward'

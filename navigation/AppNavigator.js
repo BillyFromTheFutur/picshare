@@ -21,3 +21,9 @@ const AppNavigator = props => {
 };
 
 export default AppNavigator;
+/*  
+      <PicNavigator />
+ *  {!isAuth && didTryAutoLogin && <AuthNavigator />}
+ *  {!isAuth && !didTryAutoLogin && <StartupScreen />}
+*  {isAuth &&
+*/
